@@ -1,23 +1,41 @@
-var colors = require('colors');
 const express = require('express')
+
+
 const app = express()
 const port = 8080;
- 
-app.get('/', (req, res) => {
-  res.send('Hello World')
+
+// Handlebars
+const hbs = require('hbs');
+hbs.registerPartials(__dirname + '/views/partials', function (err) {});
+
+app.set('view engine', 'hbs' );
+
+// Servir contenido estatico
+app.use( express.static('public'));
+
+app.get('/',  (req, res) => {
+  res.render('home',{
+    nombre: 'Marlon',
+    titulo: 'Curso de Node'
+  });
 });
 
-app.get('/hola',  (req, res) => {
-    res.send('Hola')
+
+app.get('/generic',  (req, res) => {
+    res.sendFile(__dirname + '/public/generic.html');
   });
 
 
+  app.get('/elements',  (req, res) => {
+    res.sendFile(__dirname + '/public/elements.html');
+  });
+
+// Servimos
 app.get('*', (req, res) => {
-    res.send('404 | Page not Found');
-    console.log('No se encuentra la pagina'.red)
+    res.sendFile(__dirname + '/public/404.html');
   });
    
 app.listen(port, ()=>{
     console.clear();
-    console.log(colors.yellow('Esta corriendo en el puerto: %s'), `${port}`.red);
+    console.log(('Esta corriendo en el puerto: %s'), port);
 })

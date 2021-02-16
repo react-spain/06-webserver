@@ -18,6 +18,7 @@
   "homepage": "https://github.com/react-spain/06-webserver#readme",
   "dependencies": {
     "colors": "^1.4.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "hbs": "^4.1.1"
   }
 }
