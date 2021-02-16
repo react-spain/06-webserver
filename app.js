@@ -1,17 +1,23 @@
-const http = require('http');
+var colors = require('colors');
+const express = require('express')
+const app = express()
+const port = 8080;
+ 
+app.get('/', (req, res) => {
+  res.send('Hello World')
+});
 
-http.createServer( (req, res) => {
+app.get('/hola',  (req, res) => {
+    res.send('Hola')
+  });
 
-    res.setHeader('Content-Disposition', 'attachment; filename=lista.csv')
-    res.writeHead(200,{  'Content-Type': 'application/csv'  })
-    
-    
 
-    res.write( 'id, nombre\n' );
-    res.write( '1, Pep\n' );
-    res.write( '2, Ramon\n' );
-    res.end();
+app.get('*', (req, res) => {
+    res.send('404 | Page not Found');
+    console.log('No se encuentra la pagina'.red)
+  });
+   
+app.listen(port, ()=>{
+    console.clear();
+    console.log(colors.yellow('Esta corriendo en el puerto: %s'), `${port}`.red);
 })
-.listen( 8080 )
-
-console.log('Escuchando el puerto, 8080')

@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/react-spain/06-webserver/issues"
   },
-  "homepage": "https://github.com/react-spain/06-webserver#readme"
+  "homepage": "https://github.com/react-spain/06-webserver#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "express": "^4.17.1"
+  }
 }
